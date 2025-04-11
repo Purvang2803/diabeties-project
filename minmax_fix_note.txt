@@ -1,0 +1,17 @@
+
+FIX: MinMaxScaler Error Resolved
+
+Problem:
+The original model was trained using RobustScaler, but app.py was using MinMaxScaler.
+This caused a mismatch when loading the saved pipeline (diabetes_prediction_pipeline.pkl),
+resulting in errors during prediction.
+
+Solution:
+Replaced MinMaxScaler with RobustScaler in app.py:
+from sklearn.preprocessing import RobustScaler 
+(Removed or avoided importing MinMaxScaler)
+
+ Reason:
+The model pipeline already contains preprocessing with RobustScaler.
+To ensure compatibility and prevent scaling conflicts or errors,
+we must use the same preprocessing steps used during training.
